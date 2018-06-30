@@ -12,7 +12,7 @@ if len(sys.argv) == 1:
 if len(sys.argv) == 3: 
     stackOffset = sys.argv[2] #offset into the file where the .data section starts (before this is the stack)   [it's the stack size, defualt is 0x100]
 else:
-    stackOffset = 100;
+    stackOffset = 0x100;
 
 print("File name is " + fileName)
 print("Stack size is " + str(stackOffset))
