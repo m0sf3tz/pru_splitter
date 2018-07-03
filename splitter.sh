@@ -6,5 +6,5 @@ SECTION=$1
 
 objdump -h $IN_F |
   grep -w $SECTION |
-  awk '{print "dd if='$IN_F' of='$OUT_F$2' bs=1 count=$[0x" $3 "] skip=$[0x" $6 "]"}' |
+  awk '{print "dd status=none 2> /dev/null if='$IN_F' of='$OUT_F$2' bs=1 count=$[0x" $3 "] skip=$[0x" $6 "]"}' |
   bash
