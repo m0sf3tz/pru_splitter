@@ -2,7 +2,7 @@ from subprocess import call
 import os
 import sys
 
-
+#fileName, mapfile, stack-offset(defualt=0x100)
 
 fileName = sys.argv[1]
 if len(sys.argv) == 1:
@@ -53,7 +53,6 @@ rodataInfo = []
 print("")
 with open(mapfile) as fp:  
    line = fp.readline()
-   cnt = 1
    while line:
        arr = line.split() 
        if arr:
@@ -94,11 +93,9 @@ if not rodataInfo:
 #fill the stack offset in the data section with zeros (not really required since we memset it all to zero before loading, but w/e)
 os.system("dd if=/dev/zero bs=1 count=" + str(stackOffset) + " >> data.bin" + " 2> /dev/null"+ " status=none") #append zeros
 
+file('data.bin','ab').write(file('bin5','rb').read())    #rodata
 file('data.bin','ab').write(file('bin3','rb').read())    #bss
 file('data.bin','ab').write(file('bin4','rb').read())    #data
-file('data.bin','ab').write(file('bin5','rb').read())    #rodata
-
-
 
 filler = (2**11) - os.stat('bin3').st_size - os.stat('bin4').st_size -os.stat('bin5').st_size - stackOffset
 
