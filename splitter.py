@@ -78,6 +78,7 @@ with open(mapfile) as fp:
 
 if not bssInfo:
     bssInfo = [0,0,0,0]
+    os.system("touch bin3") #need this as a fake for the script to work anyway
     print("No bss Section")
 else:
     #we need to create a fake BSS section and fill it with zeros since it won't be in an object dump since BSS is 0
