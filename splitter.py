@@ -39,7 +39,7 @@ os.system("bash splitter.sh " + str(sections[4]) + " 4 " + str(fileName)) #data
 os.system("bash splitter.sh " + str(sections[5]) + " 5 " + str(fileName)) #rodata
 
 file('instructions.bin','wb').write(file('bin1','rb').read()+file('bin2','rb').read())
-filler = (2**11) - os.stat('instructions.bin').st_size
+filler = (2**13) - os.stat('instructions.bin').st_size
 os.system("dd if=/dev/zero bs=1 count=" + str(filler) + " >> instructions.bin" + " 2> /dev/null" + " status=none") #append zeros
 
 
